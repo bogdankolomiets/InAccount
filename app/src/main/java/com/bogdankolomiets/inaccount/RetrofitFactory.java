@@ -29,7 +29,7 @@ public enum RetrofitFactory {
 
     private Retrofit getRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(createHttpClient())
