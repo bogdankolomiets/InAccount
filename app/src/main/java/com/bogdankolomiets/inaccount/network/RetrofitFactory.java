@@ -1,4 +1,7 @@
-package com.bogdankolomiets.inaccount;
+package com.bogdankolomiets.inaccount.network;
+
+import com.bogdankolomiets.inaccount.BuildConfig;
+import com.bogdankolomiets.inaccount.network.ApiService;
 
 import java.util.concurrent.TimeUnit;
 

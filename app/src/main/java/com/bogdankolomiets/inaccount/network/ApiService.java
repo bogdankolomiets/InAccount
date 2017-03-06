@@ -1,4 +1,4 @@
-package com.bogdankolomiets.inaccount;
+package com.bogdankolomiets.inaccount.network;
 
 /**
  * @author bogdan
