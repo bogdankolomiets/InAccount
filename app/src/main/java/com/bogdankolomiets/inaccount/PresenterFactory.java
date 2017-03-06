@@ -29,7 +29,7 @@ public class PresenterFactory {
         Object object = null;
 
         if (object == null) {
-            throw new ClassCastException("Unknown class");
+            throw new ClassCastException("Unknown class " + type);
         }
         return Primitives.wrap(type).cast(object);
     }
