@@ -31,6 +31,6 @@ public class PresenterFactory {
         if (object == null) {
             throw new ClassCastException("Unknown class " + type);
         }
-        return Primitives.wrap(type).cast(object);
+        return type.cast(object);
     }
 }
