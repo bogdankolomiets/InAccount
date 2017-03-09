@@ -1,7 +1,5 @@
 package com.bogdankolomiets.inaccount;
 
-import com.google.gson.internal.Primitives;
-
 /**
  * @author Bogdan Kolomiets
  * @version 1
