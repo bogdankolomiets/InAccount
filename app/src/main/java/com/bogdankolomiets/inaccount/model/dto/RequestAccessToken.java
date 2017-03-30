@@ -1,4 +1,4 @@
-package com.bogdankolomiets.inaccount.model;
+package com.bogdankolomiets.inaccount.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 

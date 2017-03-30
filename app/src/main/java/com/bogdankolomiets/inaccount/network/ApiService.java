@@ -1,7 +1,7 @@
 package com.bogdankolomiets.inaccount.network;
 
-import com.bogdankolomiets.inaccount.model.RequestAccessToken;
-import com.bogdankolomiets.inaccount.model.UserDTO;
+import com.bogdankolomiets.inaccount.model.dto.RequestAccessToken;
+import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
