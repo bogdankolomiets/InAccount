@@ -10,13 +10,15 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", "\"https://api.instagram.com/\""
+        buildConfigField "String", "CLIENT_ID", "\"6427390bd5d04c3d97b14537f316cfb6\""
+        buildConfigField "String", "CLIENT_SECRET", "\"e8e49e5a507e48248f5520970ab699ab\""
+        buildConfigField "String", "REDIRECT_URI", "\"www.google.com\""
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://api.instagram.com/\""
-            buildConfigField "String", "CLIENT_ID", "\"6427390bd5d04c3d97b14537f316cfb6\""
-            buildConfigField "String", "CLIENT_SECRET", "\"e8e49e5a507e48248f5520970ab699ab\""
-            buildConfigField "String", "REDIRECT_URI", "\"www.google.com\""
+
         }
         release {
             minifyEnabled false
