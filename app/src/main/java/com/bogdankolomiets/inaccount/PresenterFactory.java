@@ -1,7 +1,5 @@
 package com.bogdankolomiets.inaccount;
 
-import com.google.gson.internal.Primitives;
-
 /**
  * @author Bogdan Kolomiets
  * @version 1
@@ -31,6 +29,6 @@ public class PresenterFactory {
         if (object == null) {
             throw new ClassCastException("Unknown class " + type);
         }
-        return Primitives.wrap(type).cast(object);
+        return type.cast(object);
     }
 }
