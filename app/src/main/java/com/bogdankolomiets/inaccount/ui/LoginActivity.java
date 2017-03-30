@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.bogdankolomiets.inaccount.R;
+import com.bogdankolomiets.inaccount.di.LoginActivityComponent;
+import com.bogdankolomiets.inaccount.di.activity.HasActivitySubcomponentBuilders;
 import com.bogdankolomiets.inaccount.ui.common.BaseActivity;
 import com.bogdankolomiets.inaccount.ui.presenter.LoginPresenter;
 import com.bogdankolomiets.inaccount.ui.view.LoginView;
@@ -27,6 +29,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         findViewById(R.id.btn_login).setOnClickListener(onClick -> mPresenter.onLoginClick());
+    }
+
+    @Override
+    protected void injectMembers(HasActivitySubcomponentBuilders hasActivitySubcomponentBuilders) {
+        ((LoginActivityComponent.Builder) hasActivitySubcomponentBuilders.getActivityComponentBuilder(LoginActivity.class))
+                .activityModule(new LoginActivityComponent.LoginActivityModule(this))
+                .build()
+                .injectMembers(this);
     }
 
     @Override
