@@ -1,8 +1,11 @@
 package com.bogdankolomiets.inaccount.network;
 
-import retrofit2.Call;
+import com.bogdankolomiets.inaccount.model.dto.RequestAccessToken;
+import com.bogdankolomiets.inaccount.model.dto.UserDTO;
+
+import io.reactivex.Single;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * @author bogdan
@@ -11,9 +14,6 @@ import retrofit2.http.Query;
  */
 
 public interface ApiService {
-    @POST("oauth/authorize")
-    Call<Void> auth(@Query("client_id") String clientId,
-                    @Query("client_secret") String clientSecret,
-                    @Query("redirect_uri") String redirectUri,
-                    @Query("response_type") String responseType);
+    @POST("oauth/access_token")
+    Single<UserDTO> getAccessToken(@Body RequestAccessToken body);
 }

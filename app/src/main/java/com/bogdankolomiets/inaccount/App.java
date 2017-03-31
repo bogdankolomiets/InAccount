@@ -1,12 +1,23 @@
 package com.bogdankolomiets.inaccount;
 
 import android.app.Application;
+import android.content.Context;
 
-import com.bogdankolomiets.inaccount.network.RetrofitFactory;
+import com.bogdankolomiets.inaccount.di.ApiModule;
+import com.bogdankolomiets.inaccount.di.AppComponent;
+import com.bogdankolomiets.inaccount.di.AppModule;
+import com.bogdankolomiets.inaccount.di.DaggerAppComponent;
+import com.bogdankolomiets.inaccount.di.activity.ActivityComponent;
+import com.bogdankolomiets.inaccount.di.activity.ActivityComponentBuilder;
+import com.bogdankolomiets.inaccount.di.activity.HasActivitySubcomponentBuilders;
+import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+
+import dagger.Provides;
 
 /**
  * @author bogdan
@@ -14,22 +25,32 @@ import retrofit2.Response;
  * @date 06.03.17
  */
 
-public class App extends Application {
+public class App extends Application implements HasActivitySubcomponentBuilders {
+    @Inject
+    Map<Class<? extends CommonView>, Provider<ActivityComponentBuilder>> activityComponentBuilders;
+
+    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        RetrofitFactory.INSTANCE.getApiService().auth(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET, BuildConfig.REDIRECT_URI, "code")
-        .enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+        mAppComponent = buildAppComponent();
+        mAppComponent.inject(this);
+    }
 
-            }
+    public static HasActivitySubcomponentBuilders get(Context context) {
+        return ((HasActivitySubcomponentBuilders) context.getApplicationContext());
+    }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+    protected AppComponent buildAppComponent() {
+        return DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .apiModule(new ApiModule(BuildConfig.BASE_URL))
+                .build();
+    }
 
-            }
-        });
+    @Override
+    public ActivityComponentBuilder getActivityComponentBuilder(Class<? extends CommonView> viewClass) {
+        return activityComponentBuilders.get(viewClass).get();
     }
 }
