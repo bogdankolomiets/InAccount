@@ -1,6 +1,6 @@
 package com.bogdankolomiets.inaccount.managers;
 
-import com.bogdankolomiets.inaccount.User;
+import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 
 /**
  * @author bogdan
@@ -10,9 +10,9 @@ import com.bogdankolomiets.inaccount.User;
 
 public interface LocalDataManager {
 
-    void saveUser(User user);
+    void saveUser(UserDTO user);
 
-    User getUser();
+    UserDTO getUser();
 
     String USER = "USER";
 }

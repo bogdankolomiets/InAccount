@@ -1,6 +1,7 @@
 package com.bogdankolomiets.inaccount.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -43,6 +44,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void openLink(String url, OAuthDialogListener oAuthDialogListener) {
         new LoginDialog(this, url, oAuthDialogListener).show();
+    }
+
+    @Override
+    public void login() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

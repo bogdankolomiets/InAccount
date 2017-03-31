@@ -11,4 +11,6 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
 public interface LoginView extends CommonView {
     void openLink(String url, OAuthDialogListener oAuthDialogListener);
+
+    void login();
 }

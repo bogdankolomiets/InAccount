@@ -26,15 +26,22 @@ public class LoginPresenter extends BasePresenter<LoginView, LoginInteractor> im
     }
 
     public void onLoginClick() {
-        String url = getInteractor().getLoginUrl();
-        getView().openLink(url, this);
+        if (getInteractor().hasSession()) {
+            getView().login();
+        } else {
+            String url = getInteractor().getLoginUrl();
+            getView().openLink(url, this);
+        }
+
     }
 
     @Override
     public void onComplete(String code) {
-        Disposable disposable = getInteractor().getAccessToken(code).subscribe(response -> {
-            Toast.makeText(getView().getViewContext(), response.toString(), Toast.LENGTH_LONG).show();
-        });
+        Disposable disposable = getInteractor().getAccessToken(code)
+                .doOnSuccess(userDTO -> getInteractor().saveSession(userDTO))
+                .subscribe(response -> {
+                    Toast.makeText(getView().getViewContext(), response.toString(), Toast.LENGTH_LONG).show();
+                });
     }
 
     @Override

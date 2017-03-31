@@ -1,6 +1,7 @@
 package com.bogdankolomiets.inaccount.ui.interactors;
 
 import com.bogdankolomiets.inaccount.BuildConfig;
+import com.bogdankolomiets.inaccount.managers.LocalDataManager;
 import com.bogdankolomiets.inaccount.model.dto.RequestAccessToken;
 import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 import com.bogdankolomiets.inaccount.network.ApiService;
@@ -18,10 +19,12 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class LoginInteractor implements Interactor {
     private final ApiService mApiService;
+    private final LocalDataManager mLocalDataManager;
 
     @Inject
-    public LoginInteractor(ApiService apiService) {
+    public LoginInteractor(ApiService apiService, LocalDataManager localDataManager) {
         mApiService = apiService;
+        mLocalDataManager = localDataManager;
     }
 
     public String getLoginUrl() {
@@ -46,5 +49,17 @@ public class LoginInteractor implements Interactor {
                 "authorization_code",
                 BuildConfig.REDIRECT_URI,
                 code).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public void saveSession(UserDTO userDTO) {
+        mLocalDataManager.saveUser(userDTO);
+    }
+
+    public boolean hasSession() {
+        return mLocalDataManager.getUser() != null;
+    }
+
+    public UserDTO getSession() {
+        return mLocalDataManager.getUser();
     }
 }

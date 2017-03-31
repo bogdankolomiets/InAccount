@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.bogdankolomiets.inaccount.BuildConfig;
-import com.bogdankolomiets.inaccount.User;
+import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 import com.google.gson.Gson;
 
 /**
@@ -34,7 +34,7 @@ public class LocalDataManagerImpl implements LocalDataManager {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(UserDTO user) {
         String serializedUser = new Gson().toJson(user);
         mPreferences.edit()
                 .putString(USER, serializedUser)
@@ -42,11 +42,11 @@ public class LocalDataManagerImpl implements LocalDataManager {
     }
 
     @Override
-    public User getUser() {
+    public UserDTO getUser() {
         String serializedUser = mPreferences.getString(USER, null);
 
         if (serializedUser != null) {
-            return new Gson().fromJson(serializedUser, User.class);
+            return new Gson().fromJson(serializedUser, UserDTO.class);
         }
 
         return null;
