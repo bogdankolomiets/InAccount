@@ -1,6 +1,7 @@
 package com.bogdankolomiets.inaccount.di.activity;
 
 import com.bogdankolomiets.inaccount.di.LoginActivityComponent;
+import com.bogdankolomiets.inaccount.ui.LoginActivity;
 import com.bogdankolomiets.inaccount.ui.view.LoginView;
 
 import dagger.Binds;

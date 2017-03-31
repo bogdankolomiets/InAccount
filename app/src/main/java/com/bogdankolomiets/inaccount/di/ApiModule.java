@@ -1,6 +1,7 @@
 package com.bogdankolomiets.inaccount.di;
 
 import com.bogdankolomiets.inaccount.network.ApiService;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -37,8 +37,8 @@ public class ApiModule {
 
     @Singleton
     @Provides
-    RxJavaCallAdapterFactory provideRxJavaCallAdapterFactory() {
-        return RxJavaCallAdapterFactory.create();
+    RxJava2CallAdapterFactory provideRxJavaCallAdapterFactory() {
+        return RxJava2CallAdapterFactory.create();
     }
 
     @Singleton
@@ -64,7 +64,7 @@ public class ApiModule {
 
     @Singleton
     @Provides
-    Retrofit provideRetrofit(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory, RxJavaCallAdapterFactory rxJavaCallAdapterFactory) {
+    Retrofit provideRetrofit(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory, RxJava2CallAdapterFactory rxJavaCallAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(mBaseUrl)
                 .addConverterFactory(gsonConverterFactory)

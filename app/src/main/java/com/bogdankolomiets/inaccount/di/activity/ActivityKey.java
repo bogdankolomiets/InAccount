@@ -1,7 +1,5 @@
 package com.bogdankolomiets.inaccount.di.activity;
 
-import android.app.Activity;
-
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
 import dagger.MapKey;

@@ -4,6 +4,7 @@ import com.bogdankolomiets.inaccount.di.activity.ActivityComponent;
 import com.bogdankolomiets.inaccount.di.activity.ActivityComponentBuilder;
 import com.bogdankolomiets.inaccount.di.activity.ActivityModule;
 import com.bogdankolomiets.inaccount.di.activity.ActivityScope;
+import com.bogdankolomiets.inaccount.ui.LoginActivity;
 import com.bogdankolomiets.inaccount.ui.view.LoginView;
 
 import dagger.Module;
@@ -18,17 +19,17 @@ import dagger.Subcomponent;
 @Subcomponent(
         modules = LoginActivityComponent.LoginActivityModule.class
 )
-public interface LoginActivityComponent extends ActivityComponent<LoginView> {
+public interface LoginActivityComponent extends ActivityComponent<LoginActivity> {
 
     @Subcomponent.Builder
     interface Builder extends ActivityComponentBuilder<LoginActivityModule, LoginActivityComponent> {
 
     }
+
     @Module
     class LoginActivityModule extends ActivityModule<LoginView> {
-
         public LoginActivityModule(LoginView view) {
             super(view);
         }
     }
-        }
+}

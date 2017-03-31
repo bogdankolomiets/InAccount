@@ -3,6 +3,7 @@ package com.bogdankolomiets.inaccount.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.bogdankolomiets.inaccount.R;
 import com.bogdankolomiets.inaccount.di.LoginActivityComponent;
@@ -33,15 +34,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     protected void injectMembers(HasActivitySubcomponentBuilders hasActivitySubcomponentBuilders) {
-        ((LoginActivityComponent.Builder) hasActivitySubcomponentBuilders.getActivityComponentBuilder(LoginActivity.class))
+        ((LoginActivityComponent.Builder) hasActivitySubcomponentBuilders.getActivityComponentBuilder(LoginView.class))
                 .activityModule(new LoginActivityComponent.LoginActivityModule(this))
                 .build()
                 .injectMembers(this);
     }
 
     @Override
-    public void openLink(String url) {
-
+    public void openLink(String url, OAuthDialogListener oAuthDialogListener) {
+        new LoginDialog(this, url, oAuthDialogListener).show();
     }
 
     @Override

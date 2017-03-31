@@ -1,5 +1,6 @@
 package com.bogdankolomiets.inaccount.ui.view;
 
+import com.bogdankolomiets.inaccount.ui.OAuthDialogListener;
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
 /**
@@ -9,5 +10,5 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
  */
 
 public interface LoginView extends CommonView {
-    void openLink(String url);
+    void openLink(String url, OAuthDialogListener oAuthDialogListener);
 }
