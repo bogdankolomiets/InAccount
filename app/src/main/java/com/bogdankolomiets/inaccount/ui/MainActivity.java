@@ -1,6 +1,7 @@
 package com.bogdankolomiets.inaccount.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+        findViewById(R.id.addTask).setOnClickListener(onClick -> mPresenter.onAddTaskClicked());
     }
 
     @Override
@@ -41,5 +43,11 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public Context getViewContext() {
         return this;
+    }
+
+    @Override
+    public void openAddNewTaskScreen() {
+        Intent intent = new Intent(this, TaskActivity.class);
+        startActivity(intent);
     }
 }

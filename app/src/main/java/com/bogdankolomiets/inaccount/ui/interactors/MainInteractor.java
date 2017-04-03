@@ -1,5 +1,7 @@
 package com.bogdankolomiets.inaccount.ui.interactors;
 
+import javax.inject.Inject;
+
 /**
  * @author bogdan
  * @version 1
@@ -7,4 +9,9 @@ package com.bogdankolomiets.inaccount.ui.interactors;
  */
 
 public class MainInteractor implements Interactor {
+
+    @Inject
+    public MainInteractor() {
+
+    }
 }

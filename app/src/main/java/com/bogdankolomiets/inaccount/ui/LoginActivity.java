@@ -30,6 +30,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        mPresenter.onCreate(savedInstanceState);
         findViewById(R.id.btn_login).setOnClickListener(onClick -> mPresenter.onLoginClick());
     }
 

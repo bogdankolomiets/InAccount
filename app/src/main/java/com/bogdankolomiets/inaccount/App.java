@@ -7,7 +7,6 @@ import com.bogdankolomiets.inaccount.di.ApiModule;
 import com.bogdankolomiets.inaccount.di.AppComponent;
 import com.bogdankolomiets.inaccount.di.AppModule;
 import com.bogdankolomiets.inaccount.di.DaggerAppComponent;
-import com.bogdankolomiets.inaccount.di.activity.ActivityComponent;
 import com.bogdankolomiets.inaccount.di.activity.ActivityComponentBuilder;
 import com.bogdankolomiets.inaccount.di.activity.HasActivitySubcomponentBuilders;
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
@@ -16,8 +15,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
-
-import dagger.Provides;
 
 /**
  * @author bogdan

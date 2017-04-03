@@ -1,5 +1,7 @@
 package com.bogdankolomiets.inaccount.ui.presenter;
 
+import android.widget.Toast;
+
 import com.bogdankolomiets.inaccount.BasePresenter;
 import com.bogdankolomiets.inaccount.di.activity.ActivityScope;
 import com.bogdankolomiets.inaccount.ui.interactors.MainInteractor;
@@ -21,4 +23,7 @@ public class MainPresenter extends BasePresenter<MainView, MainInteractor> {
     }
 
 
+    public void onAddTaskClicked() {
+        getView().openAddNewTaskScreen();
+    }
 }

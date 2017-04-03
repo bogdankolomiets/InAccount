@@ -9,4 +9,5 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
  */
 
 public interface MainView extends CommonView {
+    void openAddNewTaskScreen();
 }

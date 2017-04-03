@@ -1,5 +1,6 @@
 package com.bogdankolomiets.inaccount.ui.presenter;
 
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.bogdankolomiets.inaccount.BasePresenter;
@@ -26,13 +27,8 @@ public class LoginPresenter extends BasePresenter<LoginView, LoginInteractor> im
     }
 
     public void onLoginClick() {
-        if (getInteractor().hasSession()) {
-            getView().login();
-        } else {
-            String url = getInteractor().getLoginUrl();
-            getView().openLink(url, this);
-        }
-
+        String url = getInteractor().getLoginUrl();
+        getView().openLink(url, this);
     }
 
     @Override
@@ -40,12 +36,18 @@ public class LoginPresenter extends BasePresenter<LoginView, LoginInteractor> im
         Disposable disposable = getInteractor().getAccessToken(code)
                 .doOnSuccess(userDTO -> getInteractor().saveSession(userDTO))
                 .subscribe(response -> {
-                    Toast.makeText(getView().getViewContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    getView().login();
                 });
     }
 
     @Override
     public void onError(String error) {
         Toast.makeText(getView().getViewContext(), error, Toast.LENGTH_LONG).show();
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        if (getInteractor().hasSession()) {
+            getView().login();
+        }
     }
 }
