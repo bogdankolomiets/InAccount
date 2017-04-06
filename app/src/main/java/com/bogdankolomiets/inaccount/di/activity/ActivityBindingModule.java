@@ -2,8 +2,10 @@ package com.bogdankolomiets.inaccount.di.activity;
 
 import com.bogdankolomiets.inaccount.di.LoginActivityComponent;
 import com.bogdankolomiets.inaccount.di.MainActivityComponent;
+import com.bogdankolomiets.inaccount.di.TaskActivityComponent;
 import com.bogdankolomiets.inaccount.ui.view.LoginView;
 import com.bogdankolomiets.inaccount.ui.view.MainView;
+import com.bogdankolomiets.inaccount.ui.view.TaskView;
 
 import dagger.Binds;
 import dagger.Module;
@@ -17,7 +19,8 @@ import dagger.multibindings.IntoMap;
 @Module(
         subcomponents = {
                 LoginActivityComponent.class,
-                MainActivityComponent.class
+                MainActivityComponent.class,
+                TaskActivityComponent.class
         }
 )
 public abstract class ActivityBindingModule {
@@ -31,4 +34,9 @@ public abstract class ActivityBindingModule {
     @IntoMap
     @ActivityKey(MainView.class)
     public abstract ActivityComponentBuilder mainActivityComponentBuilder(MainActivityComponent.Builder impl);
+
+    @Binds
+    @IntoMap
+    @ActivityKey(TaskView.class)
+    public abstract ActivityComponentBuilder taskActivityComponentBuilder(TaskActivityComponent.Builder impl);
 }
