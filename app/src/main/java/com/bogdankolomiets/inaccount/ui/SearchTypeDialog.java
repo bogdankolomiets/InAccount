@@ -97,7 +97,7 @@ public class SearchTypeDialog<D> extends DialogFragment {
         rootView.findViewById(R.id.btn_ok).setOnClickListener(onClick -> {
             if (mListener != null) {
                 String data = etHashTags.getText().toString();
-                SearchTypeResult<String> result = new SearchTypeResult<String>(data);
+                SearchTypeResult<String> result = new SearchTypeResult<>(data);
                 mListener.onChange((SearchTypeResult<D>) result);
                 dismissAllowingStateLoss();
             }

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/bogdan/StudioProjects/InAccount/dynamicgrid/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/bogdan/StudioProjects/InAccount/dynamicgrid/src/debug/shaders"/></dataSet></merger>
