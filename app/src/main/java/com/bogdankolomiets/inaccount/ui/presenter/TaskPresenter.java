@@ -24,14 +24,16 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     }
 
     public void onHashTagClicked() {
-        getView().openTypeScreen(SearchTypeDialog.HASH_TAG);
+        getView().openTypeScreen(SearchTypeDialog.HASH_TAG, (SearchTypeDialog.ChangeListener<String>) result -> {
+            getView().showHashTags(result.getData());
+        });
     }
 
     public void onLocationClicked() {
-        Toast.makeText(getView().getViewContext(), "on Location Clicked", Toast.LENGTH_SHORT).show();
+        getView().showLocation();
     }
 
     public void onUserClicked() {
-        Toast.makeText(getView().getViewContext(), "on User Clicked", Toast.LENGTH_SHORT).show();
+        getView().showUser();
     }
 }

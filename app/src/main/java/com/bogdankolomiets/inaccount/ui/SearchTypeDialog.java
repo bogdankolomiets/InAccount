@@ -7,8 +7,11 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.bogdankolomiets.inaccount.R;
+import com.bogdankolomiets.inaccount.model.SearchTypeResult;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -19,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
  * @date 06.04.17
  */
 
-public class SearchTypeDialog extends DialogFragment {
+public class SearchTypeDialog<D> extends DialogFragment {
     public static final String TYPE = "TYPE";
 
     public static final int HASH_TAG = 1;
@@ -32,14 +35,19 @@ public class SearchTypeDialog extends DialogFragment {
     }
 
     private int mType;
+    private ChangeListener<D> mListener;
 
-    public static SearchTypeDialog newInstance(@SearchType int type) {
-        SearchTypeDialog instance = new SearchTypeDialog();
+    public static <D> SearchTypeDialog<D> newInstance(@SearchType int type) {
+        SearchTypeDialog<D> instance = new SearchTypeDialog<D>();
         Bundle args = new Bundle();
         args.putInt(TYPE, type);
 
         instance.setArguments(args);
         return instance;
+    }
+
+    public void setupChangeListener(ChangeListener<D> listener) {
+        mListener = listener;
     }
 
     @Override
@@ -85,6 +93,15 @@ public class SearchTypeDialog extends DialogFragment {
     }
 
     private void initHashTagViewComponents(View rootView) {
+        EditText etHashTags = (EditText) rootView.findViewById(R.id.tv_hash_tags);
+        rootView.findViewById(R.id.btn_ok).setOnClickListener(onClick -> {
+            if (mListener != null) {
+                String data = etHashTags.getText().toString();
+                SearchTypeResult<String> result = new SearchTypeResult<String>(data);
+                mListener.onChange((SearchTypeResult<D>) result);
+                dismissAllowingStateLoss();
+            }
+        });
         rootView.findViewById(R.id.btn_cancel).setOnClickListener(onClick -> dismissAllowingStateLoss());
     }
 
@@ -94,5 +111,9 @@ public class SearchTypeDialog extends DialogFragment {
 
     private void initUserViewComponents(View rootView) {
 
+    }
+
+    public interface ChangeListener<D> {
+        void onChange(SearchTypeResult<D> result);
     }
 }

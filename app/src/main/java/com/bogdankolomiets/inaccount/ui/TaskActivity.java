@@ -3,7 +3,9 @@ package com.bogdankolomiets.inaccount.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bogdankolomiets.inaccount.R;
 import com.bogdankolomiets.inaccount.di.TaskActivityComponent;
@@ -24,6 +26,7 @@ public class TaskActivity extends BaseActivity implements TaskView {
     private LinearLayout vHashTag;
     private LinearLayout vLocation;
     private LinearLayout vUser;
+    TextView tvSearchType;
 
     @Inject
     TaskPresenter mPresenter;
@@ -32,6 +35,7 @@ public class TaskActivity extends BaseActivity implements TaskView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_activity);
+        tvSearchType = (TextView) findViewById(R.id.tvSearchType);
         vHashTag = (LinearLayout) findViewById(R.id.vHashTag);
         vHashTag.setOnClickListener(onClick -> mPresenter.onHashTagClicked());
         vLocation = (LinearLayout) findViewById(R.id.vLocation);
@@ -54,7 +58,27 @@ public class TaskActivity extends BaseActivity implements TaskView {
     }
 
     @Override
-    public void openTypeScreen(@SearchTypeDialog.SearchType int type) {
-        SearchTypeDialog.newInstance(type).show(getSupportFragmentManager(), null);
+    public <D> void openTypeScreen(@SearchTypeDialog.SearchType int type, SearchTypeDialog.ChangeListener<D> listener) {
+        SearchTypeDialog<D> dialog = SearchTypeDialog.newInstance(type);
+        dialog.setupChangeListener(listener);
+        dialog.show(getSupportFragmentManager(), null);
+    }
+
+    @Override
+    public void showHashTags(String data) {
+        tvSearchType.setVisibility(View.VISIBLE);
+        tvSearchType.setText("HashTags\n" + data);
+    }
+
+    @Override
+    public void showLocation() {
+        tvSearchType.setVisibility(View.VISIBLE);
+        tvSearchType.setText("Location\n");
+    }
+
+    @Override
+    public void showUser() {
+        tvSearchType.setVisibility(View.VISIBLE);
+        tvSearchType.setText("User\n");
     }
 }

@@ -10,5 +10,11 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
  */
 
 public interface TaskView extends CommonView {
-    void openTypeScreen(@SearchTypeDialog.SearchType int hashTag);
+    <D> void openTypeScreen(@SearchTypeDialog.SearchType int hashTag, SearchTypeDialog.ChangeListener<D> listener);
+
+    void showHashTags(String data);
+
+    void showLocation();
+
+    void showUser();
 }
