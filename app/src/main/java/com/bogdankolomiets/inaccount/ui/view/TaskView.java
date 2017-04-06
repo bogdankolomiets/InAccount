@@ -1,5 +1,6 @@
 package com.bogdankolomiets.inaccount.ui.view;
 
+import com.bogdankolomiets.inaccount.ui.SearchTypeDialog;
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
 /**
@@ -9,4 +10,5 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
  */
 
 public interface TaskView extends CommonView {
+    void openTypeScreen(@SearchTypeDialog.SearchType int hashTag);
 }

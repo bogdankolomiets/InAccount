@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.bogdankolomiets.inaccount.BasePresenter;
 import com.bogdankolomiets.inaccount.di.activity.ActivityScope;
+import com.bogdankolomiets.inaccount.ui.SearchTypeDialog;
 import com.bogdankolomiets.inaccount.ui.interactors.TaskInteractor;
 import com.bogdankolomiets.inaccount.ui.view.TaskView;
 
@@ -23,7 +24,7 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     }
 
     public void onHashTagClicked() {
-        Toast.makeText(getView().getViewContext(), "on Hash Tag Clicked", Toast.LENGTH_SHORT).show();
+        getView().openTypeScreen(SearchTypeDialog.HASH_TAG);
     }
 
     public void onLocationClicked() {

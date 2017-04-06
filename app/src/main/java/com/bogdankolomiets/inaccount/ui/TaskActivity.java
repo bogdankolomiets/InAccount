@@ -52,4 +52,9 @@ public class TaskActivity extends BaseActivity implements TaskView {
     public Context getViewContext() {
         return this;
     }
+
+    @Override
+    public void openTypeScreen(@SearchTypeDialog.SearchType int type) {
+        SearchTypeDialog.newInstance(type).show(getSupportFragmentManager(), null);
+    }
 }
