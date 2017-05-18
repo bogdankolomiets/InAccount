@@ -1,7 +1,11 @@
 package com.bogdankolomiets.inaccount.ui.view;
 
+import com.bogdankolomiets.inaccount.model.Action;
+import com.bogdankolomiets.inaccount.model.ActionVO;
 import com.bogdankolomiets.inaccount.ui.SearchTypeDialog;
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
+
+import java.util.List;
 
 /**
  * @author bogdan
@@ -17,4 +21,6 @@ public interface TaskView extends CommonView {
     void showLocation();
 
     void showUser();
+
+    void openActionAndPriorityScreen(List<ActionVO> data);
 }
