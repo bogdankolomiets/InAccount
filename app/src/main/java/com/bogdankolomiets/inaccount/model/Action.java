@@ -13,7 +13,12 @@ public class Action implements Comparable<Action> {
     private int mPriority;
 
     public Action(Type type) {
+        this(type, 0);
+    }
+
+    public Action(Type type, int priority) {
         mType = type;
+        mPriority = priority;
     }
 
     public void setPriority(int priority) {

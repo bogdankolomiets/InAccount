@@ -19,7 +19,7 @@ public class ActionsMapper implements Function<List<Action>, List<ActionVO>> {
     @Override
     public List<ActionVO> apply(List<Action> actions) throws Exception {
         List<ActionVO> result = Observable.fromIterable(actions)
-                .map(action -> new ActionVO(action.getType().name(), action.getPriority(), true))
+                .map(action -> new ActionVO(action.getType(), action.getType().name(), action.getPriority(), true))
                 .toList()
                 .blockingGet();
         return result;

@@ -7,11 +7,13 @@ package com.bogdankolomiets.inaccount.model;
  */
 
 public class ActionVO {
+    private final Action.Type mType;
     private String mName = "";
     private int mPriority = 0;
     private boolean mEnabled = false;
 
-    public ActionVO(String name, int priority, boolean enabled) {
+    public ActionVO(Action.Type type, String name, int priority, boolean enabled) {
+        mType = type;
         mName = name;
         mPriority = priority;
         mEnabled = enabled;
@@ -27,6 +29,10 @@ public class ActionVO {
 
     public int getPriority() {
         return mPriority;
+    }
+
+    public Action.Type getType() {
+        return mType;
     }
 
     public void setPriority(int priority) {

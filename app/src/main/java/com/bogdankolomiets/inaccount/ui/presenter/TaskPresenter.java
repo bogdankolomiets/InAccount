@@ -9,6 +9,7 @@ import com.bogdankolomiets.inaccount.ui.SearchTypeDialog;
 import com.bogdankolomiets.inaccount.ui.interactors.TaskInteractor;
 import com.bogdankolomiets.inaccount.ui.view.TaskView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -56,6 +57,12 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     }
 
     public void onConfirmActionsAndPriority(List<ActionVO> result) {
-
+        List<Action> data = new ArrayList<>();
+        for (ActionVO actionVO : result) {
+            if (actionVO.isEnabled()) {
+                data.add(new Action(actionVO.getType(), actionVO.getPriority()));
+            }
+        }
+        getInteractor().saveActions(data);
     }
 }

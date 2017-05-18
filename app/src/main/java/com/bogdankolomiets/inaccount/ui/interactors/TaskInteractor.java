@@ -1,6 +1,8 @@
 package com.bogdankolomiets.inaccount.ui.interactors;
 
 import com.bogdankolomiets.inaccount.model.Action;
+import com.bogdankolomiets.inaccount.model.ActionVO;
+import com.bogdankolomiets.inaccount.model.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,11 +21,11 @@ import io.reactivex.Observable;
 
 public class TaskInteractor implements Interactor {
 
-    private List<Action> mAvailableActions;
+    private final Task mTask;
 
     @Inject
     public TaskInteractor() {
-
+        mTask = new Task();
     }
 
     public Observable<List<Action>> getAvailableActions() {
@@ -47,5 +49,10 @@ public class TaskInteractor implements Interactor {
         result.add(comment);
         Collections.sort(result);
         return result;
+    }
+
+    public void saveActions(List<Action> result) {
+        Collections.sort(result);
+        mTask.setActions(result);
     }
 }
