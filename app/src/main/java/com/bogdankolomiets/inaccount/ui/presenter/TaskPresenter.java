@@ -1,5 +1,7 @@
 package com.bogdankolomiets.inaccount.ui.presenter;
 
+import android.widget.EditText;
+
 import com.bogdankolomiets.inaccount.BasePresenter;
 import com.bogdankolomiets.inaccount.di.activity.ActivityScope;
 import com.bogdankolomiets.inaccount.mappers.ActionsMapper;
@@ -8,10 +10,10 @@ import com.bogdankolomiets.inaccount.model.ActionVO;
 import com.bogdankolomiets.inaccount.ui.SearchTypeDialog;
 import com.bogdankolomiets.inaccount.ui.interactors.TaskInteractor;
 import com.bogdankolomiets.inaccount.ui.view.TaskView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 import javax.inject.Inject;
 
@@ -47,7 +49,7 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     }
 
     public void onHasProfilePhotoCheckedChanged(boolean checked) {
-
+        getInteractor().setHasProfilePhoto(checked);
     }
 
     public void onActionsAndPriorityClicked() {
@@ -64,5 +66,15 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
             }
         }
         getInteractor().saveActions(data);
+    }
+
+    public void onSubscribersCountChanges(EditText etSubscribersCount) {
+        RxTextView.textChanges(etSubscribersCount)
+                .subscribe(getInteractor()::subscribersCountChanges);
+    }
+
+    public void onSubscriptionsCountChanges(EditText etSubscriptionsCount) {
+        RxTextView.textChanges(etSubscriptionsCount)
+                .subscribe(getInteractor()::subscriptionsCountChanged);
     }
 }

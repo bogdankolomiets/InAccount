@@ -55,4 +55,16 @@ public class TaskInteractor implements Interactor {
         Collections.sort(result);
         mTask.setActions(result);
     }
+
+    public void setHasProfilePhoto(boolean hasProfilePhoto) {
+        mTask.setHasProfilePhoto(hasProfilePhoto);
+    }
+
+    public void subscribersCountChanges(CharSequence sequence) {
+        mTask.setSubscribersCount(Integer.valueOf(sequence.toString()));
+    }
+
+    public void subscriptionsCountChanged(CharSequence sequence) {
+        mTask.setSubscroptionsCount(Integer.valueOf(sequence.toString()));
+    }
 }

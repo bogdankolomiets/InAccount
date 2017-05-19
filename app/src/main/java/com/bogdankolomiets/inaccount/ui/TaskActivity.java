@@ -82,6 +82,8 @@ public class TaskActivity extends BaseActivity implements TaskView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_activity);
         ButterKnife.bind(this);
+        mPresenter.onSubscribersCountChanges(etSubscribersCount);
+        mPresenter.onSubscriptionsCountChanges(etSubscriptionsCount);
     }
 
     @Override
