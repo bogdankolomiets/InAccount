@@ -13,6 +13,7 @@ public class Task {
     private int mSubscribersCount;
     private int mSubscroptionsCount;
     private List<Action> mActions;
+    private String mSearchType;
 
     public Task() {
 
@@ -34,5 +35,7 @@ public class Task {
         mSubscroptionsCount = subscroptionsCount;
     }
 
-
+    public void setSearchType(String searchType) {
+        mSearchType = searchType;
+    }
 }

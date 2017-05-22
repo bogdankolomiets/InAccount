@@ -67,4 +67,8 @@ public class TaskInteractor implements Interactor {
     public void subscriptionsCountChanged(CharSequence sequence) {
         mTask.setSubscroptionsCount(Integer.valueOf(sequence.toString()));
     }
+
+    public void setHashTagsSearchType(String data) {
+
+    }
 }

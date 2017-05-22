@@ -32,6 +32,7 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
 
     public void onHashTagClicked() {
         getView().openTypeScreen(SearchTypeDialog.HASH_TAG, (SearchTypeDialog.ChangeListener<String>) result -> {
+            getInteractor().setHashTagsSearchType(result.getData());
             getView().showHashTags(result.getData());
         });
     }
