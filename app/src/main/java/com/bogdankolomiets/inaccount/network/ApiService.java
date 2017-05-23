@@ -2,9 +2,11 @@ package com.bogdankolomiets.inaccount.network;
 
 import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -23,5 +25,25 @@ public interface ApiService {
                                    @Field("redirect_uri") String redirectUri,
                                    @Field("code") String code);
 
+    @GET("tags/{tag-name}/media/recent")
+    Observable<Void> getRecentlyTaggedMedia(@Path("tag-name") String tagName,
+                                            @Field("access_token") String accessToken);
+
+    @POST("media/{media-id}/likes")
+    Observable<Void> likeMediaById(@Path("media-id") String id,
+                                   @Field("access_token") String token);
+
+    @POST("media/{media-id}/comments")
+    Observable<Void> commentMediaById(@Path("media-id") String id,
+                                      @Field("access_token") String token,
+                                      @Field("text") String text);
+
+    @POST("users/{user-id}/relationship?action=follow")
+    Observable<Void> follow(@Path("user-id") String userId,
+                            @Field("access_token") String token);
+
+    @POST("users/{user-id}/relationship?action=unfollow")
+    Observable<Void> unfollow(@Path("user-id") String userId,
+                              @Field("access_token") String token);
 
 }

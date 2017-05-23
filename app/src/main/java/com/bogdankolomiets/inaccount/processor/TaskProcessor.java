@@ -50,4 +50,8 @@ public class TaskProcessor {
     public void stopTask(Task task) {
 
     }
+
+    private void processTask(Task task) {
+
+    }
 }

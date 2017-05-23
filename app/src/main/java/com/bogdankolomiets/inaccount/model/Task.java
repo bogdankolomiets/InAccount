@@ -38,4 +38,24 @@ public class Task {
     public void setSearchType(String searchType) {
         mSearchType = searchType;
     }
+
+    public boolean isHasProfilePhoto() {
+        return mHasProfilePhoto;
+    }
+
+    public int getSubscribersCount() {
+        return mSubscribersCount;
+    }
+
+    public int getSubscroptionsCount() {
+        return mSubscroptionsCount;
+    }
+
+    public List<Action> getActions() {
+        return mActions;
+    }
+
+    public String getSearchType() {
+        return mSearchType;
+    }
 }
