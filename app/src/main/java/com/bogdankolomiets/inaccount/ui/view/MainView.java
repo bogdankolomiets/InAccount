@@ -1,6 +1,9 @@
 package com.bogdankolomiets.inaccount.ui.view;
 
+import com.bogdankolomiets.inaccount.model.Task;
 import com.bogdankolomiets.inaccount.ui.common.CommonView;
+
+import java.util.List;
 
 /**
  * @author bogdan
@@ -10,4 +13,6 @@ import com.bogdankolomiets.inaccount.ui.common.CommonView;
 
 public interface MainView extends CommonView {
     void openAddNewTaskScreen();
+
+    void showTasks(List<Task> data);
 }

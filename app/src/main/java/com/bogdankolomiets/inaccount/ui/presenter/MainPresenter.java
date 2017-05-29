@@ -23,6 +23,12 @@ public class MainPresenter extends BasePresenter<MainView, MainInteractor> {
     }
 
 
+    public void onResume() {
+        getInteractor().loadTasks().subscribe(data -> {
+            getView().showTasks(data);
+        },throwable -> getView().showError(throwable.getMessage()));
+    }
+
     public void onAddTaskClicked() {
         getView().openAddNewTaskScreen();
     }

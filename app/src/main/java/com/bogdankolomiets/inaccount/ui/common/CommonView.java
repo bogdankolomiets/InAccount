@@ -10,4 +10,6 @@ import android.content.Context;
 
 public interface CommonView {
     Context getViewContext();
+
+    void showError(String message);
 }

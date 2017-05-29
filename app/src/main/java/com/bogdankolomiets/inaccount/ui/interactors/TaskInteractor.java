@@ -1,5 +1,7 @@
 package com.bogdankolomiets.inaccount.ui.interactors;
 
+import com.bogdankolomiets.inaccount.db.repository.impl.TaskRepository;
+import com.bogdankolomiets.inaccount.managers.LocalDataManager;
 import com.bogdankolomiets.inaccount.model.Action;
 import com.bogdankolomiets.inaccount.model.ActionVO;
 import com.bogdankolomiets.inaccount.model.Task;
@@ -20,11 +22,12 @@ import io.reactivex.Observable;
  */
 
 public class TaskInteractor implements Interactor {
-
+    private final TaskRepository mTaskRepository;
     private final Task mTask;
 
     @Inject
-    public TaskInteractor() {
+    public TaskInteractor(TaskRepository taskRepository) {
+        mTaskRepository = taskRepository;
         mTask = new Task();
     }
 
@@ -69,6 +72,14 @@ public class TaskInteractor implements Interactor {
     }
 
     public void setHashTagsSearchType(String data) {
+
+    }
+
+    public void saveTask() {
+        mTaskRepository.saveTask(mTask);
+    }
+
+    public void startTask() {
 
     }
 }

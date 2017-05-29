@@ -1,6 +1,9 @@
 package com.bogdankolomiets.inaccount.managers;
 
+import com.bogdankolomiets.inaccount.model.Task;
 import com.bogdankolomiets.inaccount.model.dto.UserDTO;
+
+import java.util.List;
 
 /**
  * @author bogdan

@@ -1,6 +1,8 @@
 package com.bogdankolomiets.inaccount.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author bogdan
@@ -9,18 +11,20 @@ import java.util.List;
  */
 
 public class Task {
+    private final String UUID;
     private boolean mHasProfilePhoto;
     private int mSubscribersCount;
     private int mSubscroptionsCount;
     private List<Action> mActions;
     private String mSearchType;
 
-    public Task() {
-
+    public Task(String UUID) {
+        this.UUID = UUID;
     }
 
     public void setActions(List<Action> actions) {
-        mActions = actions;
+        mActions = new ArrayList<>();
+        mActions.addAll(actions);
     }
 
     public void setHasProfilePhoto(boolean hasProfilePhoto) {
@@ -41,6 +45,10 @@ public class Task {
 
     public boolean isHasProfilePhoto() {
         return mHasProfilePhoto;
+    }
+
+    public String getUUID() {
+        return UUID;
     }
 
     public int getSubscribersCount() {

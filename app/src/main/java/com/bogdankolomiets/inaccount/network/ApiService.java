@@ -1,5 +1,6 @@
 package com.bogdankolomiets.inaccount.network;
 
+import com.bogdankolomiets.inaccount.model.dto.RelationshipDTO;
 import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 
 import io.reactivex.Observable;
@@ -39,11 +40,11 @@ public interface ApiService {
                                       @Field("text") String text);
 
     @POST("users/{user-id}/relationship?action=follow")
-    Observable<Void> follow(@Path("user-id") String userId,
-                            @Field("access_token") String token);
+    Observable<RelationshipDTO> follow(@Path("user-id") String userId,
+                                       @Field("access_token") String token);
 
     @POST("users/{user-id}/relationship?action=unfollow")
-    Observable<Void> unfollow(@Path("user-id") String userId,
-                              @Field("access_token") String token);
+    Observable<RelationshipDTO> unfollow(@Path("user-id") String userId,
+                                         @Field("access_token") String token);
 
 }

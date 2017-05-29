@@ -8,9 +8,12 @@ import android.support.annotation.Nullable;
 import com.bogdankolomiets.inaccount.R;
 import com.bogdankolomiets.inaccount.di.MainActivityComponent;
 import com.bogdankolomiets.inaccount.di.activity.HasActivitySubcomponentBuilders;
+import com.bogdankolomiets.inaccount.model.Task;
 import com.bogdankolomiets.inaccount.ui.common.BaseActivity;
 import com.bogdankolomiets.inaccount.ui.presenter.MainPresenter;
 import com.bogdankolomiets.inaccount.ui.view.MainView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,13 +44,29 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
     public Context getViewContext() {
         return this;
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 
     @Override
     public void openAddNewTaskScreen() {
         Intent intent = new Intent(this, TaskActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showTasks(List<Task> data) {
+
     }
 }

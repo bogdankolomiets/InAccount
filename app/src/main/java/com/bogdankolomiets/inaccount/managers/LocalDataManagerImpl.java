@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.bogdankolomiets.inaccount.BuildConfig;
+import com.bogdankolomiets.inaccount.model.Task;
 import com.bogdankolomiets.inaccount.model.dto.UserDTO;
 import com.google.gson.Gson;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @author bogdan
@@ -51,4 +56,5 @@ public class LocalDataManagerImpl implements LocalDataManager {
 
         return null;
     }
+
 }

@@ -4,7 +4,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.bogdankolomiets.inaccount"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -69,6 +69,8 @@ dependencies {
 
     compile "android.arch.persistence.room:runtime:$arch_version"
     annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
+
+    compile 'io.realm:realm-android:0.83.0'
 
 }
 
