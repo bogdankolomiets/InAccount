@@ -10,7 +10,7 @@ import io.realm.RealmObject;
  * @date 18.05.17
  */
 
-public class Action extends RealmObject implements Comparable<Action> {
+public class Action implements Comparable<Action> {
     private final Type mType;
     private int mPriority;
 

@@ -7,6 +7,8 @@ import com.bogdankolomiets.inaccount.di.activity.ActivityScope;
 import com.bogdankolomiets.inaccount.ui.interactors.MainInteractor;
 import com.bogdankolomiets.inaccount.ui.view.MainView;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
 /**

@@ -48,6 +48,7 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     public void onStartClicked() {
         getInteractor().saveTask();
         getInteractor().startTask();
+        getView().showTasksScreen();
     }
 
     public void onHasProfilePhotoCheckedChanged(boolean checked) {
@@ -72,11 +73,13 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
 
     public void onSubscribersCountChanges(EditText etSubscribersCount) {
         RxTextView.textChanges(etSubscribersCount)
+                .skipInitialValue()
                 .subscribe(getInteractor()::subscribersCountChanges);
     }
 
     public void onSubscriptionsCountChanges(EditText etSubscriptionsCount) {
         RxTextView.textChanges(etSubscriptionsCount)
+                .skipInitialValue()
                 .subscribe(getInteractor()::subscriptionsCountChanged);
     }
 }

@@ -11,15 +11,19 @@ import java.util.UUID;
  */
 
 public class Task {
-    private final String UUID;
+    private String UUID;
     private boolean mHasProfilePhoto;
     private int mSubscribersCount;
     private int mSubscroptionsCount;
     private List<Action> mActions;
-    private String mSearchType;
+    private String mSearchType = "";
 
     public Task(String UUID) {
         this.UUID = UUID;
+    }
+
+    public Task() {
+
     }
 
     public void setActions(List<Action> actions) {

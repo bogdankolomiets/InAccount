@@ -3,6 +3,7 @@ package com.bogdankolomiets.inaccount;
 import android.app.Application;
 import android.content.Context;
 
+import com.bogdankolomiets.inaccount.db.module.RealmModule;
 import com.bogdankolomiets.inaccount.di.ApiModule;
 import com.bogdankolomiets.inaccount.di.AppComponent;
 import com.bogdankolomiets.inaccount.di.AppModule;
@@ -15,6 +16,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * @author bogdan
@@ -31,6 +35,9 @@ public class App extends Application implements HasActivitySubcomponentBuilders 
     @Override
     public void onCreate() {
         super.onCreate();
+        Realm.init(this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder().modules(new RealmModule()).build();
+        Realm.setDefaultConfiguration(configuration);
         mAppComponent = buildAppComponent();
         mAppComponent.inject(this);
     }

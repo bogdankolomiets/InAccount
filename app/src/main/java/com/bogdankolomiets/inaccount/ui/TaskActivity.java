@@ -129,4 +129,9 @@ public class TaskActivity extends BaseActivity implements TaskView {
         ActionsAndPriorityDialog dialog = ActionsAndPriorityDialog.newInstance(data, mPresenter::onConfirmActionsAndPriority);
         dialog.show(getSupportFragmentManager(), null);
     }
+
+    @Override
+    public void showTasksScreen() {
+        onBackPressed();
+    }
 }

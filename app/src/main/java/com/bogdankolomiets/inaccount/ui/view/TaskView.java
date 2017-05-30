@@ -23,4 +23,6 @@ public interface TaskView extends CommonView {
     void showUser();
 
     void openActionAndPriorityScreen(List<ActionVO> data);
+
+    void showTasksScreen();
 }

@@ -1,5 +1,7 @@
 package com.bogdankolomiets.inaccount.di;
 
+import android.test.mock.MockApplication;
+
 import com.bogdankolomiets.inaccount.App;
 import com.bogdankolomiets.inaccount.db.module.RealmModule;
 import com.bogdankolomiets.inaccount.managers.LocalDataManager;
@@ -35,9 +37,6 @@ public class AppModule {
     @Singleton
     @Provides
     Realm provideRealmDatabase() {
-        RealmConfiguration configuration = new RealmConfiguration.Builder(mApplication).setModules(new RealmModule()).build();
-        Realm.setDefaultConfiguration(configuration);
-
-        return Realm.getInstance(mApplication);
+        return Realm.getDefaultInstance();
     }
 }

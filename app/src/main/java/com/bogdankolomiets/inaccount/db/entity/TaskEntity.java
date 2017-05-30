@@ -24,8 +24,7 @@ public class TaskEntity extends RealmObject {
     private boolean hasProfilePhoto;
     private int subscribersCount;
     private int subscriptionCount;
-    @Required
-    private Action[] mActions;
+    private RealmList<ActionEntity> mActions;
     @Required
     private String searchType;
 
@@ -45,11 +44,9 @@ public class TaskEntity extends RealmObject {
         this.subscriptionCount = subscriptionCount;
     }
 
-    public void setActions(List<Action> actions) {
-        mActions = new Action[actions.size()];
-        for (int i = 0; i < actions.size(); i++) {
-            mActions[i] = actions.get(i);
-        }
+    public void setActions(List<ActionEntity> actions) {
+        mActions = new RealmList<>();
+        mActions.addAll(actions);
     }
 
     public void setSearchType(String searchType) {
@@ -72,8 +69,8 @@ public class TaskEntity extends RealmObject {
         return subscriptionCount;
     }
 
-    public List<Action> getActions() {
-        return Arrays.asList(mActions);
+    public List<ActionEntity> getActions() {
+        return mActions;
     }
 
     public String getSearchType() {

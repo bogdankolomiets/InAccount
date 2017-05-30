@@ -1,7 +1,9 @@
 package com.bogdankolomiets.inaccount.db.repository.impl;
 
+import com.bogdankolomiets.inaccount.db.entity.ActionEntity;
 import com.bogdankolomiets.inaccount.db.entity.TaskEntity;
 import com.bogdankolomiets.inaccount.db.repository.ITaskRepository;
+import com.bogdankolomiets.inaccount.model.Action;
 import com.bogdankolomiets.inaccount.model.Task;
 
 import java.util.ArrayList;
@@ -40,28 +42,31 @@ public class TaskRepository implements ITaskRepository {
                 taskEntity.setUUID(UUID.randomUUID().toString());
                 taskEntity.setSubscribersCount(task.getSubscribersCount());
                 taskEntity.setSubscriptionCount(task.getSubscroptionsCount());
-                taskEntity.setActions(task.getActions());
+                List<ActionEntity> actions = new ArrayList<>();
+                for (Action action : task.getActions()) {
+                    ActionEntity actionEntity = mDatabase.createObject(ActionEntity.class);
+                    actionEntity.setPriority(action.getPriority());
+                    actionEntity.setType(action.getType().name());
+                    actions.add(actionEntity);
+                }
+                taskEntity.setActions(actions);
                 taskEntity.setSearchType(task.getSearchType());
                 taskEntity.setHasProfilePhoto(task.isHasProfilePhoto());
                 mDatabase.commitTransaction();
             } catch (Exception ex) {
                 e.onError(ex);
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        });
     }
 
     @Override
     public Single<List<TaskEntity>> getTasks() {
         return Observable.fromIterable(mDatabase.where(TaskEntity.class).findAll())
-                .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .toList();
     }
 
     @Override
     public Observable<TaskEntity> getTaskByUUID(String UUID) {
-        return Observable.just(mDatabase.where(TaskEntity.class).equalTo("UUID", UUID).findFirst())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return Observable.just(mDatabase.where(TaskEntity.class).equalTo("UUID", UUID).findFirst());
     }
 }
