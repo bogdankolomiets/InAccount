@@ -2,6 +2,9 @@ package com.bogdankolomiets.inaccount.db.entity;
 
 import com.bogdankolomiets.inaccount.model.Action;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -18,14 +21,11 @@ import io.realm.annotations.Required;
 public class TaskEntity extends RealmObject {
     @PrimaryKey
     private String UUID;
-    @Required
     private boolean hasProfilePhoto;
-    @Required
     private int subscribersCount;
-    @Required
     private int subscriptionCount;
     @Required
-    private List<Action> mActions;
+    private Action[] mActions;
     @Required
     private String searchType;
 
@@ -46,7 +46,10 @@ public class TaskEntity extends RealmObject {
     }
 
     public void setActions(List<Action> actions) {
-        mActions = actions;
+        mActions = new Action[actions.size()];
+        for (int i = 0; i < actions.size(); i++) {
+            mActions[i] = actions.get(i);
+        }
     }
 
     public void setSearchType(String searchType) {
@@ -70,7 +73,7 @@ public class TaskEntity extends RealmObject {
     }
 
     public List<Action> getActions() {
-        return mActions;
+        return Arrays.asList(mActions);
     }
 
     public String getSearchType() {

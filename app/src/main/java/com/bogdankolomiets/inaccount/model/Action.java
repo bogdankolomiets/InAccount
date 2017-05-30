@@ -2,13 +2,15 @@ package com.bogdankolomiets.inaccount.model;
 
 import android.support.annotation.NonNull;
 
+import io.realm.RealmObject;
+
 /**
  * @author bogdan
  * @version 1
  * @date 18.05.17
  */
 
-public class Action implements Comparable<Action> {
+public class Action extends RealmObject implements Comparable<Action> {
     private final Type mType;
     private int mPriority;
 
