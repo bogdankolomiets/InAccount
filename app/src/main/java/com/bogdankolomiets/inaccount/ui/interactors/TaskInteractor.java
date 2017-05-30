@@ -75,8 +75,8 @@ public class TaskInteractor implements Interactor {
 
     }
 
-    public void saveTask() {
-        mTaskRepository.saveTask(mTask);
+    public Observable<Void> saveTask() {
+        return mTaskRepository.saveTask(mTask);
     }
 
     public void startTask() {

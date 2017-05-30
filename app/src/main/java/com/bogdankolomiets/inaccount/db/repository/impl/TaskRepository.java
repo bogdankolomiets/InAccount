@@ -35,11 +35,10 @@ public class TaskRepository implements ITaskRepository {
 
     @Override
     public Observable<Void> saveTask(Task task) {
-        return Observable.create((ObservableOnSubscribe<Void>) e -> {
+        return Observable.create(emitter -> {
+            mDatabase.beginTransaction();
             try {
-                mDatabase.beginTransaction();
-                TaskEntity taskEntity = mDatabase.createObject(TaskEntity.class);
-                taskEntity.setUUID(UUID.randomUUID().toString());
+                TaskEntity taskEntity = mDatabase.createObject(TaskEntity.class, UUID.randomUUID().toString());
                 taskEntity.setSubscribersCount(task.getSubscribersCount());
                 taskEntity.setSubscriptionCount(task.getSubscroptionsCount());
                 List<ActionEntity> actions = new ArrayList<>();
@@ -53,8 +52,10 @@ public class TaskRepository implements ITaskRepository {
                 taskEntity.setSearchType(task.getSearchType());
                 taskEntity.setHasProfilePhoto(task.isHasProfilePhoto());
                 mDatabase.commitTransaction();
+                emitter.onComplete();
             } catch (Exception ex) {
-                e.onError(ex);
+                mDatabase.cancelTransaction();
+                emitter.onError(ex);
             }
         });
     }

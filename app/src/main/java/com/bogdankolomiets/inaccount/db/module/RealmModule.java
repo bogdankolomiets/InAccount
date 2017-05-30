@@ -1,5 +1,6 @@
 package com.bogdankolomiets.inaccount.db.module;
 
+import com.bogdankolomiets.inaccount.db.entity.ActionEntity;
 import com.bogdankolomiets.inaccount.db.entity.TaskEntity;
 
 /**
@@ -7,6 +8,6 @@ import com.bogdankolomiets.inaccount.db.entity.TaskEntity;
  * @version 1
  * @date 29.05.17
  */
-@io.realm.annotations.RealmModule(classes = {TaskEntity.class})
+@io.realm.annotations.RealmModule(classes = {TaskEntity.class, ActionEntity.class})
 public class RealmModule {
 }

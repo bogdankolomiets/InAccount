@@ -46,9 +46,10 @@ public class TaskPresenter extends BasePresenter<TaskView, TaskInteractor> {
     }
 
     public void onStartClicked() {
-        getInteractor().saveTask();
-        getInteractor().startTask();
-        getView().showTasksScreen();
+        getInteractor().saveTask().doOnComplete(() -> {
+            getInteractor().startTask();
+            getView().showTasksScreen();
+        }).subscribe(result -> {});
     }
 
     public void onHasProfilePhotoCheckedChanged(boolean checked) {
